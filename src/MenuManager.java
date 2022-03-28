@@ -1,10 +1,12 @@
 import java.util.Scanner;
+import java.util.Arrays;
 public class MenuManager {
 
 	public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 		int num = 5;
-		    		    	         
+		String[] Account ;
+		String []ArrayAsString = {} ; 
 	    while (num!=6) {
 	    	System.out.println("Account Management System Menu!!");
             System.out.println("1.Add Account");
@@ -17,7 +19,9 @@ public class MenuManager {
             num = input.nextInt();
             
             if (num==1) {
-            	addAccount();
+            	 arrayAsString = Arrays.toString(addAccount());  
+            	 
+            	 System.out.println(Account);
             }
             else if (num==2) {
             	deleteAccount();
@@ -26,7 +30,7 @@ public class MenuManager {
             	editAccount();
             }
             else if (num==4) {
-            	viewAccount();
+            	viewAccount(Account);
             }
             else {
             	continue;
@@ -35,7 +39,7 @@ public class MenuManager {
      }   
 
 	
-	public static void addAccount() {
+	public static String [] addAccount() {
 		Scanner input = new Scanner(System.in);
 		System.out.print("Site:" );
 	    String site = input.next();
@@ -43,6 +47,9 @@ public class MenuManager {
 	    String Account_id = input.next();
 	    System.out.print("PassWord:" );
 	    String Account_pass = input.next();
+	    String [] Account   = new String[] {site,Account_id, Account_pass} ;
+       
+	    return  Account;
 	}
 	public static void deleteAccount() {
 		Scanner input = new Scanner(System.in);
@@ -54,10 +61,11 @@ public class MenuManager {
 		String site2 = input.next();
 		System.out.print(site2+ "edit" );
 	}
-	public static void viewAccount() {
+	public static void viewAccount(String[] Account) {
 		Scanner input = new Scanner(System.in);
 		String site3 = input.next();
 		System.out.print(site3+"view" );
+		System.out.print( Account);
 	}
 		
 
