@@ -11,7 +11,7 @@ public class MenuManager {
             System.out.println("1.Add Account");
             System.out.println("2.Delete Account");
             System.out.println("3.Edit Account");
-            System.out.println("4.View Account");
+            System.out.println("4.View Accounts");
             System.out.println("5.Exit ");
             System.out.println("Select one number between in 1-5:");
             num = input.nextInt();
@@ -26,7 +26,7 @@ public class MenuManager {
             	accountmanager.editAccount();
             }
             else if (num==4) {
-            	accountmanager.viewAccount();
+            	accountmanager.viewAccounts();
             }
             else {
             	continue;
