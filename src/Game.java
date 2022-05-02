@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class  Search extends Account {
+public class  Game extends Account {
 	public void getUserInput(Scanner input) {
 		
 		System.out.print("Site:" );
@@ -15,27 +15,26 @@ public class  Search extends Account {
 	    String Password = input.next();
 	    this.setPassword(Password);
 	    
+	    this.setEmail("");
+	    
 	    char answer = 'x';
 	    while(answer != 'y'&& answer != 'Y' && answer != 'n'&& answer != 'N') {
-	    System.out.print("Do you have an email address(Y/N)" );
+	    System.out.print("Do you have an SecondPassword(Y/N)" );
 	    answer = input.next().charAt(0);
 	    if(answer == 'y'||answer == 'Y') {
-	    	System.out.print("Email:" );
-		    String email = input.next();
-		    this.setEmail(email);
+	    	System.out.print("SencondPassword:" );
+		    String SecondPassword = input.next();
+		    this.setSecondPassword(SecondPassword);
 		    break;
 	    }
 	    else if(answer == 'n'||answer == 'N') {
-	    	this.setEmail("");
+	    	this.setSecondPassword("");
 	    	break;
 	    }
 	    else {
 	    	
 	    }
 	    }
-	   
-	    this.setSecondPassword("");
-	    
 	}
 
 }

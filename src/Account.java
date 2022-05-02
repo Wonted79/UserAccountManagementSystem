@@ -9,6 +9,7 @@ public class Account {
 	protected String ID;
 	protected String Password;
 	protected String Email;
+	protected String SecondPassword;
 	
 	public Account(){		
 	}
@@ -59,9 +60,17 @@ public class Account {
 	public void setEmail(String email) {
 		this.Email = email;
 	}
+	
+	public String getSecondPassword() {
+		return SecondPassword;
+	}
+
+	public void setSecondPassword(String SecondPassword) {
+		this.SecondPassword = SecondPassword;
+	}
  
 	public void printInfo() {
-		System.out.println(" 사이트: "+site+" ID: "+ID+" Password: "+Password + " Email: "+Email);
+		System.out.println(" 사이트: "+site+" ID: "+ID+" Password: "+Password + " Email: "+Email +" SecondPassword: "+SecondPassword);
 	}
 	
 	public void getUserInput(Scanner input) {
@@ -81,6 +90,12 @@ public class Account {
 	    System.out.print("Email:" );
 	    String Email = input.next();
 	    this.setEmail(Email);
+	    
+	    System.out.print("SecondPassword:" );
+	    String SecondPassword = input.next();
+	    this.setSecondPassword(SecondPassword);
+	    
+	    
 	}
 
 }
