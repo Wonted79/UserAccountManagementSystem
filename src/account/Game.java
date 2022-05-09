@@ -1,6 +1,10 @@
+package account;
 import java.util.Scanner;
 
-public class  Game extends Account {
+public class  Game extends Account implements AccountInput {
+	public Game(AccountKind kind){
+		super(kind);
+	}
 	public void getUserInput(Scanner input) {
 		
 		System.out.print("Site:" );
@@ -15,7 +19,7 @@ public class  Game extends Account {
 	    String Password = input.next();
 	    this.setPassword(Password);
 	    
-	    this.setEmail("");
+	    this.setEmail(""); //이메일에는 아무것도 넣지않음
 	    
 	    char answer = 'x';
 	    while(answer != 'y'&& answer != 'Y' && answer != 'n'&& answer != 'N') {
@@ -31,10 +35,23 @@ public class  Game extends Account {
 	    	this.setSecondPassword("");
 	    	break;
 	    }
-	    else {
-	    	
+	    else {	    	
 	    }
 	    }
 	}
-
+	public void printInfo() {
+		String skind = "none";
+		switch(this.kind) {
+		case Common:
+			skind ="Common";
+			break;
+		case Search:
+			skind ="Search";
+			break;
+		case Game:
+			skind ="Game";
+			break;		
+		}
+		System.out.println("kind: "+skind+" 사이트: "+site+" ID: "+ID+" Password: "+Password + " Email: "+Email +" SecondPassword: "+SecondPassword);
+	}
 }

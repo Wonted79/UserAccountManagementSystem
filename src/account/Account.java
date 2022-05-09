@@ -1,9 +1,9 @@
+package account;
 
 import java.util.Scanner;
 
-public class Account {
+public abstract class Account {
 	
-
 	protected AccountKind kind = AccountKind.Common;
 	protected String site;
 	protected String ID;
@@ -11,14 +11,17 @@ public class Account {
 	protected String Email;
 	protected String SecondPassword;
 	
-	public Account(){		
+	public Account(){
+	}
+	
+	public Account(AccountKind Kind){
+		this.kind = kind; 
 	}
 	
 	public Account(String site,String ID,String Password){
 		this.site=site;
 		this.ID=ID;
-		this.Password=Password;
-		
+		this.Password=Password;	
 	}
 	
 	public AccountKind getKind() {
@@ -69,33 +72,6 @@ public class Account {
 		this.SecondPassword = SecondPassword;
 	}
  
-	public void printInfo() {
-		System.out.println(" ªÁ¿Ã∆Æ: "+site+" ID: "+ID+" Password: "+Password + " Email: "+Email +" SecondPassword: "+SecondPassword);
-	}
+	public abstract void printInfo();
 	
-	public void getUserInput(Scanner input) {
-	
-		System.out.print("Site:" );
-	    String site= input.next();
-	    this.setSite(site);
-	    
-	    System.out.print("Id:" );
-	    String ID= input.next();
-	    this.setID(ID); 
-	    
-	    System.out.print("PassWord:" );
-	    String Password = input.next();
-	    this.setPassword(Password);
-	    
-	    System.out.print("Email:" );
-	    String Email = input.next();
-	    this.setEmail(Email);
-	    
-	    System.out.print("SecondPassword:" );
-	    String SecondPassword = input.next();
-	    this.setSecondPassword(SecondPassword);
-	    
-	    
-	}
-
 }

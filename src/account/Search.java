@@ -1,8 +1,12 @@
+package account;
 import java.util.Scanner;
 
-public class  Search extends Account {
-	public void getUserInput(Scanner input) {
-		
+public class  Search extends Account implements AccountInput {
+	public Search(AccountKind kind){
+		super(kind);
+	}
+	
+	public void getUserInput(Scanner input) {		
 		System.out.print("Site:" );
 	    String site= input.next();
 	    this.setSite(site);
@@ -32,10 +36,23 @@ public class  Search extends Account {
 	    else {
 	    	
 	    }
-	    }
-	   
-	    this.setSecondPassword("");
-	    
+	    }   
+	    this.setSecondPassword("");	    
 	}
-
+	public void printInfo() {
+		String skind = "none";
+		switch(this.kind) {
+		case Common:
+			skind ="Common";
+			break;
+		case Search:
+			skind ="Search";
+			break;
+		case Game:
+			skind ="Game";
+			break;
+		
+		}
+		System.out.println("kind: "+skind+" ªÁ¿Ã∆Æ: "+site+" ID: "+ID+" Password: "+Password + " Email: "+Email +" SecondPassword: "+SecondPassword);
+	}
 }
