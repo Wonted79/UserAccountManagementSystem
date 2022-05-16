@@ -2,33 +2,31 @@ package account;
 
 import java.util.Scanner;
 
-public class Common extends Account implements AccountInput{
+public class Common extends Account {
 	public Common(AccountKind kind){
 		super(kind);
 	}
+			
+	
 	public void getUserInput(Scanner input) {
 		
-		System.out.print("Site:" );
-	    String site= input.next();
-	    this.setSite(site);
+		setAccountSite(input);
 	    
-	    System.out.print("Id:" );
-	    String ID= input.next();
-	    this.setID(ID); 
+	    setAccountID(input);
 	    
-	    System.out.print("PassWord:" );
-	    String Password = input.next();
-	    this.setPassword(Password);
+	    setAccountPassword(input);
 	    
-	    System.out.print("Email:" );
-	    String Email = input.next();
-	    this.setEmail(Email);
+	    setAccountEmail(input);
 	    
-	    System.out.print("SecondPassword:" );
-	    String SecondPassword = input.next();
-	    this.setSecondPassword(SecondPassword);	    	    
+	    setAccountSecondPassword(input);    
 	}
+	
 	public void printInfo() {
+		String skind = getKindString();
+		System.out.println("kind: "+skind+" 사이트: "+site+" ID: "+ID+" Password: "+Password + " Email: "+Email +" SecondPassword: "+SecondPassword);
+	}
+	
+	public String getKindString() {
 		String skind = "none";
 		switch(this.kind) {
 		case Common:
@@ -40,8 +38,8 @@ public class Common extends Account implements AccountInput{
 		case Game:
 			skind ="Game";
 			break;
-		
+        default:		
 		}
-		System.out.println("kind: "+skind+" 사이트: "+site+" ID: "+ID+" Password: "+Password + " Email: "+Email +" SecondPassword: "+SecondPassword);
+        return skind; 		
 	}
 }

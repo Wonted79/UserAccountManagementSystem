@@ -1,45 +1,54 @@
 package account;
 import java.util.Scanner;
 
-public class  Search extends Account implements AccountInput {
+import exception.EmailFormatException;
+
+public class  Search extends Account  {
 	public Search(AccountKind kind){
 		super(kind);
 	}
 	
 	public void getUserInput(Scanner input) {		
-		System.out.print("Site:" );
-	    String site= input.next();
-	    this.setSite(site);
+		setAccountSite(input);
+		    
+		setAccountID(input);
+		    
+		setAccountPassword(input);
 	    
-	    System.out.print("Id:" );
-	    String ID= input.next();
-	    this.setID(ID); 
-	    
-	    System.out.print("PassWord:" );
-	    String Password = input.next();
-	    this.setPassword(Password);
-	    
-	    char answer = 'x';
-	    while(answer != 'y'&& answer != 'Y' && answer != 'n'&& answer != 'N') {
-	    System.out.print("Do you have an email address(Y/N)" );
-	    answer = input.next().charAt(0);
-	    if(answer == 'y'||answer == 'Y') {
-	    	System.out.print("Email:" );
-		    String email = input.next();
-		    this.setEmail(email);
-		    break;
-	    }
-	    else if(answer == 'n'||answer == 'N') {
-	    	this.setEmail("");
-	    	break;
-	    }
-	    else {
-	    	
-	    }
-	    }   
+		setAccountEmailwithYN(input);
+	      
 	    this.setSecondPassword("");	    
 	}
+	
+	public void setAccountEmailwithYN(Scanner input) {
+		char answer = 'x';
+	    while(answer != 'y'&& answer != 'Y' && answer != 'n'&& answer != 'N') {
+	        System.out.print("Do you have an email address(Y/N)" );
+	        answer = input.next().charAt(0);
+	        try {
+	        if(answer == 'y'||answer == 'Y') {
+	    	    setAccountEmail(input);
+		        break;
+	        }
+	        else if(answer == 'n'||answer == 'N') {
+	    	    this.setEmail("");
+	    	    break;
+	        }
+	        else {	    	
+	        }
+	    }
+	        catch(EmailFormatException e) {
+	        	 System.out.println("Incorrect Email Format. put the e-mail address that contaims @");
+	        }
+	    }
+	}
+	
 	public void printInfo() {
+		String skind = getKindString();
+		System.out.println("kind: "+skind+" 사이트: "+site+" ID: "+ID+" Password: "+Password + " Email: "+Email +" SecondPassword: "+SecondPassword);
+	}
+	
+	public String getKindString() {
 		String skind = "none";
 		switch(this.kind) {
 		case Common:
@@ -51,8 +60,8 @@ public class  Search extends Account implements AccountInput {
 		case Game:
 			skind ="Game";
 			break;
-		
+        default:		
 		}
-		System.out.println("kind: "+skind+" 사이트: "+site+" ID: "+ID+" Password: "+Password + " Email: "+Email +" SecondPassword: "+SecondPassword);
+        return skind; 		
 	}
 }

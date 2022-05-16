@@ -2,7 +2,9 @@ package account;
 
 import java.util.Scanner;
 
-public abstract class Account {
+import exception.EmailFormatException;
+
+public abstract class Account implements AccountInput {
 	
 	protected AccountKind kind = AccountKind.Common;
 	protected String site;
@@ -60,7 +62,10 @@ public abstract class Account {
 		return Email;
 	}
 
-	public void setEmail(String email) {
+	public void setEmail(String email) throws EmailFormatException {
+		if(!email.contains("@")&& !email.equals("")) {
+			throw new EmailFormatException();
+		}
 		this.Email = email;
 	}
 	
@@ -74,4 +79,39 @@ public abstract class Account {
  
 	public abstract void printInfo();
 	
+	public void setAccountSite(Scanner input) {
+		System.out.print("Account Site:");
+        String site = input.next();
+        this.setSite(site);		
+	}	
+	public void setAccountID(Scanner input) {
+		System.out.print("Account Id:");
+        String ID = input.next();
+        this.setID(ID);
+	}	
+	public void setAccountPassword(Scanner input) {
+		 System.out.print("Account Password:");
+	     String Password = input.next();
+	     this.setPassword(Password);
+	}
+	public void setAccountEmail(Scanner input) {
+		 String Email = "";
+		 while (!Email.contains("@")) {
+		     System.out.print("Account Email:");
+	         Email = input.next();
+	         try {
+	    	     this.setEmail(Email);
+	         }
+	         catch(EmailFormatException e) {
+	    	     System.out.println("Incorrect Email Format. put the e-mail address that contaims @");
+	    	     
+	         }
+		 }	
+	}
+	public void setAccountSecondPassword(Scanner input) {
+		 System.out.print("Account SecondPassword:");
+         String SecondPassword = input.next();
+         this.setSecondPassword(SecondPassword);
+	
+}
 }

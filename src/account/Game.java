@@ -1,45 +1,47 @@
 package account;
 import java.util.Scanner;
 
-public class  Game extends Account implements AccountInput {
+public class  Game extends Account  {
 	public Game(AccountKind kind){
 		super(kind);
 	}
 	public void getUserInput(Scanner input) {
 		
-		System.out.print("Site:" );
-	    String site= input.next();
-	    this.setSite(site);
+        setAccountSite(input);
 	    
-	    System.out.print("Id:" );
-	    String ID= input.next();
-	    this.setID(ID); 
+	    setAccountID(input);
 	    
-	    System.out.print("PassWord:" );
-	    String Password = input.next();
-	    this.setPassword(Password);
+	    setAccountPassword(input);
+	    	    
+	    //this.setEmail(""); //이메일에는 아무것도 넣지않음
 	    
-	    this.setEmail(""); //이메일에는 아무것도 넣지않음
-	    
-	    char answer = 'x';
-	    while(answer != 'y'&& answer != 'Y' && answer != 'n'&& answer != 'N') {
-	    System.out.print("Do you have an SecondPassword(Y/N)" );
-	    answer = input.next().charAt(0);
-	    if(answer == 'y'||answer == 'Y') {
-	    	System.out.print("SencondPassword:" );
-		    String SecondPassword = input.next();
-		    this.setSecondPassword(SecondPassword);
-		    break;
-	    }
-	    else if(answer == 'n'||answer == 'N') {
-	    	this.setSecondPassword("");
-	    	break;
-	    }
-	    else {	    	
-	    }
-	    }
+	    setAccountSecondPasswordwithYN(input);
+	   
+	}
+	
+	public void setAccountSecondPasswordwithYN(Scanner input) {
+		 char answer = 'x';
+		    while(answer != 'y'&& answer != 'Y' && answer != 'n'&& answer != 'N') {
+		        System.out.print("Do you have an SecondPassword(Y/N)" );
+		        answer = input.next().charAt(0);
+		        if(answer == 'y'||answer == 'Y') {
+		            setAccountSecondPassword(input);   
+			        break;
+		        }
+		        else if(answer == 'n'||answer == 'N') {
+		    	    this.setSecondPassword("");
+		    	    break;
+		        }
+		        else {	    	
+		        }
+		    }
 	}
 	public void printInfo() {
+		String skind = getKindString();
+		System.out.println("kind: "+skind+" 사이트: "+site+" ID: "+ID+" Password: "+Password + " Email: "+Email +" SecondPassword: "+SecondPassword);
+	}
+	
+	public String getKindString() {
 		String skind = "none";
 		switch(this.kind) {
 		case Common:
@@ -50,8 +52,9 @@ public class  Game extends Account implements AccountInput {
 			break;
 		case Game:
 			skind ="Game";
-			break;		
+			break;
+        default:		
 		}
-		System.out.println("kind: "+skind+" 사이트: "+site+" ID: "+ID+" Password: "+Password + " Email: "+Email +" SecondPassword: "+SecondPassword);
+        return skind; 		
 	}
 }
