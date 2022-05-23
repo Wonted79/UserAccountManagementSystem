@@ -1,10 +1,15 @@
 package account;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 import exception.EmailFormatException;
 
-public abstract class Account implements AccountInput {
+public abstract class Account implements AccountInput,Serializable {	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 329698835856681774L;
 	
 	protected AccountKind kind = AccountKind.Common;
 	protected String site;

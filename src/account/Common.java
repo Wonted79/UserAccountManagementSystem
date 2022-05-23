@@ -1,8 +1,15 @@
 package account;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Common extends Account {
+public class Common extends Account implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4537894150214854496L;
+
 	public Common(AccountKind kind){
 		super(kind);
 	}

@@ -1,17 +1,20 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import account.Account;
 import account.AccountInput;
 import account.AccountKind;
 import account.Common;
 import account.Game;
 import account.Search;
 
-public class AccountManager {
+public class AccountManager implements Serializable{		
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5369543266347446925L;
 	ArrayList<AccountInput> accounts = new ArrayList<AccountInput>(); //AccountInput 의 내용을 나열한다.
-	Scanner input;
+	transient Scanner input; // 해당변수는 직렬화 하지 않는다.
 		
 	AccountManager(Scanner input){
 		this.input = input;
@@ -56,7 +59,6 @@ public class AccountManager {
 				 input.next();
 			 }
 			 kind= -1;
-			 //System.out.println(num);
 		 }
 		}
 		
@@ -124,8 +126,10 @@ public class AccountManager {
                     case 4:
                     	account.setAccountEmail(input);
                     	break;
-                    default:
+                    case 5:
                     	account.setAccountSecondPassword(input);
+                    	break;
+                    default:
                     	continue;
                     }        
 	            } // while

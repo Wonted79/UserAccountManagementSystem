@@ -1,9 +1,12 @@
 package account;
+import java.io.Serializable;
 import java.util.Scanner;
 
 import exception.EmailFormatException;
 
 public class  Search extends Account  {
+
+
 	public Search(AccountKind kind){
 		super(kind);
 	}

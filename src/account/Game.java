@@ -1,7 +1,10 @@
 package account;
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class  Game extends Account  {
+public class  Game extends Account {
+
+
 	public Game(AccountKind kind){
 		super(kind);
 	}
