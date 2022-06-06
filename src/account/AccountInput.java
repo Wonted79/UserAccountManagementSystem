@@ -11,6 +11,11 @@ public interface AccountInput {
 	public void setID(String iD);
 	public void setPassword(String password);
 	
+	public String getID();
+	public String getPassword();
+	public String getEmail();
+	public String getSecondPassword();
+	
 	public void setEmail(String email) throws EmailFormatException; 
 	
 	public void setSecondPassword(String SecondPassword);
