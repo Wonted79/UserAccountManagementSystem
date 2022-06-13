@@ -8,6 +8,8 @@ public class WindowFrame extends JFrame {
 	MenuSelection menuselection ;
 	AccountAdder accountadder;
     AccountViewer accountviewer;
+    AccountDeleter accountdeleter;
+    AccountEditer accountediter;
     
 	public WindowFrame(AccountManager accountManager) {
 		this.setSize(500,300);
@@ -16,8 +18,10 @@ public class WindowFrame extends JFrame {
 		
 		this.accountManager = accountManager;
 		menuselection = new MenuSelection(this);
-		accountadder = new AccountAdder(this); 
+		accountadder = new AccountAdder(this , this.accountManager); 
 		accountviewer = new AccountViewer(this , this.accountManager);
+		accountdeleter = new AccountDeleter(this,this.accountManager);
+		accountediter = new AccountEditer(this,this.accountManager);
 				
 		this.add(menuselection);
 		this.setVisible(true);
@@ -41,6 +45,19 @@ public class WindowFrame extends JFrame {
 	public void setAccountviewer(AccountViewer accountviewer) {
 		this.accountviewer = accountviewer;
 	}
+	public AccountEditer getAccountediter() {
+		return accountediter;
+	}
+	public void setAccountediter(AccountEditer accountediter) {
+		this.accountediter = accountediter;
+	}
+	public AccountDeleter getAccountdeleter() {
+		return accountdeleter;
+	}
+	public void setAccountdeleter(AccountDeleter accountdeleter) {
+		this.accountdeleter = accountdeleter;
+	}
+	
 	
     public void setupPanel(JPanel panel) {
     	this.getContentPane().removeAll();

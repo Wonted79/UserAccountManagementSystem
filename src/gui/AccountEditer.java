@@ -8,21 +8,21 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import event.AccountAdderCancelListener;
-import event.AccountAdderListener;
+import event.AccountEditerListener;
 import manager.AccountManager;
 
-public class AccountAdder extends JPanel{
+public class AccountEditer extends JPanel{
 	WindowFrame frame;
 	AccountManager accountManager;
 	
-	public AccountAdder(WindowFrame frame ,AccountManager accountManager) {
+	public AccountEditer(WindowFrame frame ,AccountManager accountManager) {
 		this.frame = frame;
 		this.accountManager = accountManager;
 				
 		JPanel panel = new JPanel();
 		panel.setLayout(new SpringLayout());
 		
-		JLabel labelSite = new JLabel("Site : ",JLabel.TRAILING);
+		JLabel labelSite = new JLabel("Eidt Site : ",JLabel.TRAILING);
 		JTextField fieldSite = new JTextField(10);
 		labelSite.setLabelFor(fieldSite);
 		panel.add(labelSite);
@@ -52,12 +52,12 @@ public class AccountAdder extends JPanel{
 		panel.add(labelSecondPassword);
 		panel.add(fieldSecondPassword);
 		
-		JButton saveButton = new JButton("save");
-		saveButton.addActionListener(new AccountAdderListener(fieldSite,fieldID,fieldPassword,fieldEmail,fieldSecondPassword,accountManager));
+		JButton EditButton = new JButton("Edit");
+		EditButton.addActionListener(new AccountEditerListener(fieldSite,fieldID,fieldPassword,fieldEmail,fieldSecondPassword,accountManager));
 		JButton cancelButton = new JButton("cancel");
 		cancelButton.addActionListener(new AccountAdderCancelListener(frame));
 		
-		panel.add(saveButton);
+		panel.add(EditButton);
 		panel.add(cancelButton);
 		
 		SpringUtilities.makeCompactGrid(panel,6,2,6,6,6,6);

@@ -1,12 +1,16 @@
+package manager;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import account.Account;
 import account.AccountInput;
 import account.AccountKind;
 import account.Common;
 import account.Game;
 import account.Search;
+import exception.EmailFormatException;
 
 public class AccountManager implements Serializable{		
 	/**
@@ -16,10 +20,18 @@ public class AccountManager implements Serializable{
 	ArrayList<AccountInput> accounts = new ArrayList<AccountInput>(); //AccountInput 의 내용을 나열한다.
 	transient Scanner input; // 해당변수는 직렬화 하지 않는다.
 		
-	AccountManager(Scanner input){
+	public AccountManager(Scanner input){
 		this.input = input;
 	}
-
+	public  void addAccount(String site,String id,String password,String email,String secondpassword) {	
+		AccountInput accountInput = new Common(AccountKind.Common);
+		accountInput.getUserInput(input);
+		accounts.add(accountInput);
+	}
+	public void addAccount(AccountInput accountInput) {
+		accounts.add(accountInput);
+	}
+	
 	public  void addAccount() {	
 		int kind =0;
 		AccountInput AccountInput; //A
@@ -63,6 +75,17 @@ public class AccountManager implements Serializable{
 		}
 		
 	}
+	public void deleteAccount(String Accountsite) {
+		System.out.print("remove Account site:" );
+		int index = findIndex(Accountsite);
+		for(int i=0;i<accounts.size();i++) {			
+			if (accounts.get(i).getSite().equals(Accountsite)) {
+				index = i;
+				break;				
+			}
+		}
+		removefromAccounts(index,Accountsite);
+	}
 	
 	public void deleteAccount() {
 		System.out.print("remove Account site:" );
@@ -98,6 +121,26 @@ public class AccountManager implements Serializable{
 			System.out.println("the account has not been registered");
 	        return 0;
 		}	
+	}
+	public void editAccount(String Accountsite,
+			                String AccountID,
+			                String AccountPassword,
+			                String AccountEmail,
+			                String AccountSecondPassword
+			                ) {
+		for(int i=0;i<accounts.size();i++) {
+			AccountInput account1 = accounts.get(i);
+		    if (account1.getSite().equals(Accountsite)) {
+		    	try {
+		    		account1.setID(AccountID);
+			    	account1.setPassword(AccountPassword);
+					account1.setEmail(AccountEmail);
+					account1.setSecondPassword(AccountSecondPassword);
+				} catch (EmailFormatException e) {
+					e.printStackTrace();
+				}
+		    }
+		}
 	}
 	
 	public void editAccount() {
@@ -145,8 +188,12 @@ public class AccountManager implements Serializable{
 		}	
   }
 	
-		 
-	
+	public int size() {
+		return accounts.size();
+	}
+	public AccountInput get (int index) {
+		return (Account) accounts.get(index);
+	}
 	
 	public void showEditMenu() {
 		 System.out.println("**Account Info Edit Menu**");

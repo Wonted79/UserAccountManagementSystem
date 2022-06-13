@@ -1,3 +1,4 @@
+package manager;
 import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,6 +9,8 @@ import java.io.ObjectOutputStream;
 import java.util.InputMismatchException;
 import log.EventLogger;
 import java.util.Scanner;
+
+import gui.WindowFrame;
 
 public class MenuManager {
 	static EventLogger logger = new EventLogger("log.txt");
@@ -21,7 +24,8 @@ public class MenuManager {
 		}
 		else {
 			accountmanager.input = input;
-		}					 		
+		}	
+		WindowFrame windowframe = new WindowFrame(accountmanager);
 		selectMenu(input,accountmanager);
 		putObject(accountmanager,"accountmanager.ser");
 	}

@@ -14,6 +14,37 @@ import manager.AccountManager;
 public class AccountViewer extends JPanel{
 	WindowFrame frame;
 	AccountManager accountManager;
+	
+	public AccountManager getAccountManager() {
+		return accountManager;
+	}
+
+	public void setAccountManager(AccountManager accountManager) {
+		this.accountManager = accountManager;
+		this.removeAll();
+		
+		DefaultTableModel model = new DefaultTableModel();
+		model.addColumn("site");
+		model.addColumn("ID");
+		model.addColumn("Password");
+		model.addColumn("Email");
+		model.addColumn("SecondPassword");
+		
+		for(int i=0;i<accountManager.size();i++) {
+			Vector<String> row = new Vector<String>();
+			AccountInput si= accountManager.get(i);
+			row.add(si.getSite());
+			row.add(si.getID());
+			row.add(si.getPassword());
+			row.add(si.getEmail());
+			row.add(si.getSecondPassword());
+			model.addRow(row);			
+		}		
+		JTable table = new JTable(model);
+		JScrollPane sp = new JScrollPane(table);		
+		this.add(sp);		
+	}
+
 	public  AccountViewer(WindowFrame frame , AccountManager accountManager){
 		this.frame = frame;
 		this.accountManager = accountManager;
@@ -35,14 +66,10 @@ public class AccountViewer extends JPanel{
 			row.add(si.getPassword());
 			row.add(si.getEmail());
 			row.add(si.getSecondPassword());
-			model.addRow(row);
-			
-		}
-		
+			model.addRow(row);			
+		}		
 		JTable table = new JTable(model);
-		JScrollPane sp = new JScrollPane(table);
-		
-		this.add(sp);
-		
+		JScrollPane sp = new JScrollPane(table);		
+		this.add(sp);		
 	}
 }
